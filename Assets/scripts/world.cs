@@ -29,14 +29,7 @@ public class World: MonoBehaviour
                 cube_monde[i, j] = Instantiate(cube_prefabs, new Vector3(i*2, 0, j*2), Quaternion.identity);
                 //augmentation de la taille des cubes
                 cube_monde[i, j].transform.localScale = new Vector3(2, 2, 2);
-                //récupéré le renderer pour appliquer la couleur
-                Renderer rend = cube_monde[i, j].GetComponent<Renderer>();
-
-                // Duplique le matériau pour éviter que tous les cubes partagent la même couleur
-                rend.material = new Material(rend.material);
-
-                // Couleur aléatoire
-                rend.material.color = new Color(Random.value, Random.value, Random.value);
+                
             }
             
         }
