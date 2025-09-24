@@ -20,7 +20,7 @@ public class World: MonoBehaviour
     {
         cube_monde = new GameObject[largeur, longueur];
         case_visiter_creation = new bool[largeur, longueur];
-        historique_case_visiter = new GameObject[largeur * longueur];
+        historique_case_visiter = new GameObject[100000];
         for (int i = 0; i < largeur; i++)
         {
             for(int j= 0 ; j < longueur; j++)
@@ -131,7 +131,7 @@ public class World: MonoBehaviour
             {
                 case_visiter_creation[g, h] = true;
                 //on rajoute a l'historique la case actuelle
-                historique_case_visiter[compteur_case] = position_en_cours;
+                
 
                 if(compteur_case>0)
                     position_en_cours = historique_case_visiter[compteur_case - 1];
@@ -141,7 +141,28 @@ public class World: MonoBehaviour
 
 
                 //on rajoute 1 au compteur_case 
-                compteur_case += 1;
+                int i = -1;
+                int j = -1;
+                compteur_case -= 1;
+
+                GameObject nouveau = position_en_cours;
+                for (int x = 0; x < largeur; x++)
+                {
+                    for (int y = 0; y < longueur; y++)
+                    {
+                        if (cube_monde[x, y] == nouveau)
+                        {
+                            i = x;
+                            j = y;
+                            break;
+                        }
+                    }
+                    if (i != -1) break;
+                }
+                g = i;
+                h = j;
+
+
             }
 
             if (compteur_case_non_visiter == 1)
