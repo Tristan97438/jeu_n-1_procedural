@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class World: MonoBehaviour
 {
     
     [SerializeField] GameObject cube_prefabs;
-    [SerializeField] TMPro.TextMeshPro "text (TMP)";
+   
     public int largeur = 100;
     public int longueur = 100;
     public GameObject[,] cube_monde; 
