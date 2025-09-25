@@ -1,3 +1,4 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class World: MonoBehaviour
@@ -27,8 +28,9 @@ public class World: MonoBehaviour
             {
                 //créer les cubes du labyrinthe
                 cube_monde[i, j] = Instantiate(cube_prefabs, new Vector3(i*2, 0, j*2), Quaternion.identity);
-                //augmentation de la taille des cubes
-                cube_monde[i, j].transform.localScale = new Vector3(2, 2, 2);
+                
+                
+                
                 
             }
             

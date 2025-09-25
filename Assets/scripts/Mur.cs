@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Mur : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Mur : MonoBehaviour
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<NavMeshObstacle>().enabled = false;
     }
     public void fermer()
     {
