@@ -17,7 +17,7 @@ public class cible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        agent.SetDestination(joueur.transform.position);
     }
     IEnumerator ActionChaqueSeconde()
     {
@@ -29,4 +29,5 @@ public class cible : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+
 }
