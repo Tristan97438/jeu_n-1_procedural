@@ -6,8 +6,8 @@ public class World: MonoBehaviour
     
     [SerializeField] GameObject cube_prefabs;
    
-    int largeur = 100;
-    int longueur = 100;
+    int largeur = 25;
+    int longueur = 25;
     GameObject[,] cube_monde;
 
     //déclaration du tableau visiter qui va permettre de créer le labyrinthe

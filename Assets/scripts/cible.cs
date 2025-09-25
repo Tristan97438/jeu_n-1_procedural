@@ -11,7 +11,7 @@ public class cible : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(ActionChaqueSeconde());
+        
     }
 
     // Update is called once per frame
@@ -19,15 +19,7 @@ public class cible : MonoBehaviour
     {
         agent.SetDestination(joueur.transform.position);
     }
-    IEnumerator ActionChaqueSeconde()
-    {
-        while (true)
-        {
-            agent.SetDestination(joueur.transform.position);
-
-            // Attend 1 seconde
-            yield return new WaitForSeconds(1f);
-        }
-    }
+    
+   
 
 }

@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class score : MonoBehaviour
+public class Score : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshProUGUI compteur_txt;
+    
     [SerializeField] GameObject player;
     [SerializeField] GameObject ennemi1,ennemi2,ennemi3;
-    [SerializeField] TMPro.TextMeshProUGUI win_lose_txt;
-    [SerializeField] TMPro.TextMeshProUGUI score_precedent_txt;
+    [SerializeField] TMPro.TextMeshProUGUI win_lose_txt, score_precedent_txt, compteur_txt;
+    [SerializeField] TMPro.TextMeshProUGUI distance_ennemi1, distance_ennemi2, distance_ennemi3;
+
     Vector3 pos_player;
     Vector3 pos_ennemi1;
     Vector3 pos_ennemi2;
     Vector3 pos_ennemi3;
+
+    float dist_ennemi1, dist_ennemi2, dist_ennemi3;
     bool toucher = false;
     int compteur_score = 0;
     int retiens_score = 0;
@@ -23,7 +26,7 @@ public class score : MonoBehaviour
         desactiver_ennemi();
 
         //retiens les position d'orgine
-        pos_player = player.transform.position;
+        pos_player = new Vector3(0,0.5f,0);
         pos_ennemi1 = ennemi1.transform.position;
         pos_ennemi2 = ennemi2.transform.position;
         pos_ennemi3 = ennemi3.transform.position;
@@ -59,25 +62,25 @@ public class score : MonoBehaviour
             toucher = true;
         }
         //si l'ennemi 1 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1.5 && compteur_score<5000 && compteur_score > 250)
+        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1.5 && compteur_score<5000 && compteur_score > 500)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 2 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1.5 && compteur_score < 5000 && compteur_score > 250)
+        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1.5 && compteur_score < 5000 && compteur_score > 500)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 3 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1.5 && compteur_score < 5000 && compteur_score > 250)
+        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1.5 && compteur_score < 5000 && compteur_score > 500)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //faire spawn les ennemi après un certain score 
-        if (compteur_score > 250)
+        if (compteur_score > 500)
         {
             activer_ennemi();
         }
@@ -108,6 +111,17 @@ public class score : MonoBehaviour
 
             win_lose_txt.text = ""; //<--7ème étape
         }
+
+        //affiche la distance entre le joueur et chaque ennemi
+        //ennemi 1
+        dist_ennemi1 = Vector3.Distance(player.transform.position, ennemi1.transform.position);
+        distance_ennemi1.text = "Ennemi n°1 à " + dist_ennemi1 + " m";
+        //ennemi 2
+        dist_ennemi2 = Vector3.Distance(player.transform.position, ennemi2.transform.position);
+        distance_ennemi2.text = "Ennemi n°2 à " + dist_ennemi2 + " m";
+        //ennemi 3
+        dist_ennemi3 = Vector3.Distance(player.transform.position, ennemi3.transform.position);
+        distance_ennemi3.text = "Ennemi n°3 à " + dist_ennemi3 + " m";
     }
 
     
