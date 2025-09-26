@@ -45,7 +45,7 @@ public class World: MonoBehaviour
 
         //4) S'il n'y en pas, on revient à la case précédente et on recommence.
 
-        //5) S'il y a au moins une possibilité, on en choisit une au hasard, on ouvre le mur et on recommence avec la nouvelle cellule si il y en a qu'une seule on ne choisit pas au hasard on ouvre le mur directement.
+        //5) S'il y a au moins une possibilité, on en choisit une au hasard, on ouvre le mur et on recommence avec la nouvelle case si il y en a qu'une seule on ne choisit pas au hasard on ouvre le mur directement.
 
         //6) Lorsque l'on est revenu à la case de départ et qu'il n'y a plus de possibilités, le labyrinthe est terminé. 
         for (int i = 0; i < largeur; i++) //<---1ère étape
@@ -169,7 +169,7 @@ public class World: MonoBehaviour
                             break;
                         }
                     }
-                    if (i != -1) break;
+                    
                 }
                 //mise a jour des coordonnées
                 g = i;
@@ -276,7 +276,7 @@ public class World: MonoBehaviour
                             break;
                         }
                     }
-                    if (i != -1) break;
+                    
                 }
 
                 // Comparaison pour savoir la direction
