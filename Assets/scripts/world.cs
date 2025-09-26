@@ -39,11 +39,11 @@ public class World: MonoBehaviour
         //instantier les piege a des endroits alétoire du labyrinthe
         int piege_x;
         int piege_z;
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 50; i++)
         {
             //coordonée aleatoire
-            piege_x = Random.Range(2, 25);
-            piege_z = Random.Range(2, 25);
+            piege_x = Random.Range(2, 50);
+            piege_z = Random.Range(2, 50);
             //créer les pieges
             Instantiate(piege_prefabs, new Vector3( piege_x, 0, piege_z), Quaternion.identity);
         }
@@ -70,7 +70,7 @@ public class World: MonoBehaviour
 
         }
         
-
+        //on représenter les coordonné de chaque cases
         int g = 0;
         int h = 0;
         //on choisi une case qui seras notre depart

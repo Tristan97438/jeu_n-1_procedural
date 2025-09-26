@@ -19,10 +19,10 @@ public class piege : MonoBehaviour
     void Update()
     {
         //1)récupéré les games objects pieges
-        //2)lorsque le joueur est proche d'un piege ralenti jusqu'à sortir de la zone d'effet du piege
-        //3)reprend sa vitesse normal
+        //2)lorsque le joueur est proche d'un piege il perd en vitesse
+        
 
-        int compteur_temp_ralenti = 0;
+        
         //récupéré les games objects pieges
         GameObject[] tab_piege = GameObject.FindGameObjectsWithTag("pieges");  //<--1ère étape
         for (int i = 0; i < tab_piege.Length; i++)

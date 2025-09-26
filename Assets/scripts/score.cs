@@ -68,25 +68,25 @@ public class Score : MonoBehaviour
             toucher = true;
         }
         //si l'ennemi 1 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1 && compteur_score<5000 && compteur_score > 300)  //<--3ème étape
+        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1 && compteur_score<5000 && compteur_score > 250)  //<--3ème étape
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 2 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1 && compteur_score < 5000 && compteur_score > 300)
+        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1 && compteur_score < 5000 && compteur_score > 250)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 3 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1 && compteur_score < 5000 && compteur_score > 300)
+        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1 && compteur_score < 5000 && compteur_score > 250)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //faire spawn les ennemi après un certain score 
-        if (compteur_score > 300)
+        if (compteur_score > 250)
         {
             activer_ennemi();
         }
