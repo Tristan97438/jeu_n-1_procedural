@@ -5,7 +5,7 @@ public class World: MonoBehaviour
 {
     
     [SerializeField] GameObject cube_prefabs;
-   
+    [SerializeField] GameObject piege_prefabs;
     int largeur = 25;
     int longueur = 25;
     GameObject[,] cube_monde;
@@ -34,6 +34,18 @@ public class World: MonoBehaviour
                 
             }
             
+        }
+
+        //instantier les piege a des endroits alétoire du labyrinthe
+        int piege_x;
+        int piege_z;
+        for (int i = 0; i < 20; i++)
+        {
+            //coordonée aleatoire
+            piege_x = Random.Range(5, 25);
+            piege_z = Random.Range(5, 25);
+            //créer les pieges
+            Instantiate(piege_prefabs, new Vector3( piege_x, 0, piege_z), Quaternion.identity);
         }
 
         //----Algo labyrinthe----//

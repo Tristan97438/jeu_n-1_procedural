@@ -89,34 +89,34 @@ public class Score : MonoBehaviour
         if (toucher == false)  //<--1ère étape
         {
             compteur_score += 1;
-            compteur_txt.text = "Votre score : " + compteur_score + "/ 10000";
+            compteur_txt.text = "Votre score : " + compteur_score + "/ 5000";
         }
-        //si ont atteint les 10000 le joueur a gagner
-        if (compteur_score >= 10000)  //<--2ème étape
+        //si ont atteint les 5000 le joueur a gagner
+        if (compteur_score >= 5000)  //<--2ème étape
         {
             win_lose_txt.text = "Bravo ! Vous avez gagnez ! Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 1 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1.5 && compteur_score<10000 && compteur_score > 1000)  //<--3ème étape
+        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1 && compteur_score<5000 && compteur_score > 500)  //<--3ème étape
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 2 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1.5 && compteur_score < 10000 && compteur_score > 1000)
+        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1 && compteur_score < 5000 && compteur_score > 500)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //si l'ennemi 3 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1.5 && compteur_score < 10000 && compteur_score > 1000)
+        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1 && compteur_score < 5000 && compteur_score > 500)
         {
             win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
             toucher = true;
         }
         //faire spawn les ennemi après un certain score 
-        if (compteur_score > 1000)
+        if (compteur_score > 500)
         {
             activer_ennemi();
         }
