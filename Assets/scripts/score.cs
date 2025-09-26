@@ -66,8 +66,11 @@ public class Score : MonoBehaviour
             retiens_score = compteur_score;  //<-- 2ème étape
             score_precedent_txt.text = "Score précédent : " + retiens_score;
 
-            StartCoroutine(restart());
+
             //<-- 3ème étape
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = pos_player;
+            player.GetComponent<CharacterController>().enabled = true;
             ennemi1.transform.position = pos_ennemi1;
             ennemi2.transform.position = pos_ennemi2;
             ennemi3.transform.position = pos_ennemi3;
@@ -132,9 +135,5 @@ public class Score : MonoBehaviour
         distance_ennemi3.text = "Ennemi n°3 à " + dist_ennemi3 + " m";
     }
 
-    IEnumerator restart()
-    {
-        yield return new WaitForSeconds( 0.1f);
-        player.transform.position = pos_player;
-    }
+    
 }
