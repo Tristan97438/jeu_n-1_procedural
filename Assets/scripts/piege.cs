@@ -5,11 +5,11 @@ using UnityEngine;
 public class piege : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] GameObject les_pieges;
     
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+
     void Start()
     {
         
@@ -18,19 +18,25 @@ public class piege : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //1)lorsque le joueur touche un piege ralenti pendant un certain temp
-        //2)reprend sa vitesse normal
+        //1)récupéré les games objects pieges
+        //2)lorsque le joueur est proche d'un piege ralenti jusqu'à sortir de la zone d'effet du piege
+        //3)reprend sa vitesse normal
 
         int compteur_temp_ralenti = 0;
-        if(Vector3.Distance(player.transform.position, les_pieges.transform.position) < 1)
+        //récupéré les games objects pieges
+        GameObject[] tab_piege = GameObject.FindGameObjectsWithTag("pieges");  //<--1ère étape
+        for (int i = 0; i < tab_piege.Length; i++)
         {
-            Debug.Log("piege_touché");
-           player.GetComponent<FirstPersonController>().MoveSpeed = 2.5f;
-           while (compteur_temp_ralenti < 250)
+            if (Vector3.Distance(player.transform.position, tab_piege[i].transform.position) < 2)
             {
-                compteur_temp_ralenti += 1;
+                Debug.Log("piege_touché");
+                //récupéré le composant permetant de changer la vitesse du joueur et on reduit sa vitesse avec le temp
+                player.GetComponent<FirstPersonController>().MoveSpeed -= 0.001f;  //<--2ème étape
+                            
             }
-            player.GetComponent<FirstPersonController>().MoveSpeed = 4.5f;
+            
         }
+     
+
     }
 }

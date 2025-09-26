@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class Score : MonoBehaviour
 
     int compteur_score = 0;
     int retiens_score = 0;
+    //objectif = condition de victoire ou de défaite
     //1) on augmente le score dès le lancemant
     //2) si le score du joueur atteint un certain palier alors le joueur a gagner
     //3) si le joueur est touché par l'ennemi avant d'atteindre l'objectif de score alors il a perdu
@@ -52,6 +54,43 @@ public class Score : MonoBehaviour
     void Update()
     {
         
+       
+        //tant que le joueur n'est pas touché on augmente le score et on l'affiche
+        if (toucher == false)  //<--1ère étape
+        {
+            compteur_score += 1;
+            compteur_txt.text = "Votre score : " + compteur_score + "/ 5000";
+        }
+        //si ont atteint les 5000 le joueur a gagner
+        if (compteur_score >= 5000)  //<--2ème étape
+        {
+            win_lose_txt.text = "Bravo ! Vous avez gagnez ! Vous pouvez recommencer en apuyant sur la touche 'R'.";
+            toucher = true;
+        }
+        //si l'ennemi 1 touche le joueur alors la partie et perdue
+        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1 && compteur_score<5000 && compteur_score > 300)  //<--3ème étape
+        {
+            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
+            toucher = true;
+        }
+        //si l'ennemi 2 touche le joueur alors la partie et perdue
+        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1 && compteur_score < 5000 && compteur_score > 300)
+        {
+            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
+            toucher = true;
+        }
+        //si l'ennemi 3 touche le joueur alors la partie et perdue
+        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1 && compteur_score < 5000 && compteur_score > 300)
+        {
+            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
+            toucher = true;
+        }
+        //faire spawn les ennemi après un certain score 
+        if (compteur_score > 300)
+        {
+            activer_ennemi();
+        }
+        //objectif = pouvoir respawn et recommencer
         //1) si on appuie sur R on restart.
         //2) on affiche le score précédent
         //3) ont remet a l'emplacement d'origine le joueur et les ennnemi
@@ -59,7 +98,7 @@ public class Score : MonoBehaviour
         //5) on remet a 0 le compteur
         //6) on remet toucher a False
         //7) retirer le message de victoire ou de défaite
-
+        //8) on remet sa vitesse initial 
         if (Input.GetKeyDown(KeyCode.R))  //<-- 1ère étape
         {
 
@@ -82,43 +121,10 @@ public class Score : MonoBehaviour
             toucher = false; //<--6ème étape
 
             win_lose_txt.text = ""; //<--7ème étape
-           
 
-        }
-        //tant que le joueur n'est pas touché on augmente le score et on l'affiche
-        if (toucher == false)  //<--1ère étape
-        {
-            compteur_score += 1;
-            compteur_txt.text = "Votre score : " + compteur_score + "/ 5000";
-        }
-        //si ont atteint les 5000 le joueur a gagner
-        if (compteur_score >= 5000)  //<--2ème étape
-        {
-            win_lose_txt.text = "Bravo ! Vous avez gagnez ! Vous pouvez recommencer en apuyant sur la touche 'R'.";
-            toucher = true;
-        }
-        //si l'ennemi 1 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi1.transform.position) < 1 && compteur_score<5000 && compteur_score > 500)  //<--3ème étape
-        {
-            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
-            toucher = true;
-        }
-        //si l'ennemi 2 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi2.transform.position) < 1 && compteur_score < 5000 && compteur_score > 500)
-        {
-            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
-            toucher = true;
-        }
-        //si l'ennemi 3 touche le joueur alors la partie et perdue
-        if (Vector3.Distance(player.transform.position, ennemi3.transform.position) < 1 && compteur_score < 5000 && compteur_score > 500)
-        {
-            win_lose_txt.text = "Dommage. Vous avez perdu. Vous pouvez recommencer en apuyant sur la touche 'R'.";
-            toucher = true;
-        }
-        //faire spawn les ennemi après un certain score 
-        if (compteur_score > 500)
-        {
-            activer_ennemi();
+            player.GetComponent<FirstPersonController>().MoveSpeed = 4.5f;
+
+
         }
 
 
