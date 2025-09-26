@@ -15,11 +15,7 @@ public class Mur : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<NavMeshObstacle>().enabled = false;
     }
-    public void fermer()
-    {
-        gameObject.GetComponent<BoxCollider>().enabled = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
-    }
+    
 
     // Update is called once per frame
     void Update()

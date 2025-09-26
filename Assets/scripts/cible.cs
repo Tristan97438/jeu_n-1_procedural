@@ -17,6 +17,7 @@ public class cible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //on definie la cible des ennemis ici le joueur
         agent.SetDestination(joueur.transform.position);
     }
     

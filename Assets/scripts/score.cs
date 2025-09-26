@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Score : MonoBehaviour
@@ -15,6 +16,7 @@ public class Score : MonoBehaviour
 
     float dist_ennemi1, dist_ennemi2, dist_ennemi3;
     bool toucher = false;
+
     int compteur_score = 0;
     int retiens_score = 0;
     //1) on augmente le score dès le lancemant
@@ -49,6 +51,37 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //1) si on appuie sur R on restart.
+        //2) on affiche le score précédent
+        //3) ont remet a l'emplacement d'origine le joueur et les ennnemi
+        //4) on desactive les ennemi 
+        //5) on remet a 0 le compteur
+        //6) on remet toucher a False
+        //7) retirer le message de victoire ou de défaite
+
+        if (Input.GetKeyDown(KeyCode.R))  //<-- 1ère étape
+        {
+
+            retiens_score = compteur_score;  //<-- 2ème étape
+            score_precedent_txt.text = "Score précédent : " + retiens_score;
+
+            StartCoroutine(restart());
+            //<-- 3ème étape
+            ennemi1.transform.position = pos_ennemi1;
+            ennemi2.transform.position = pos_ennemi2;
+            ennemi3.transform.position = pos_ennemi3;
+
+            desactiver_ennemi(); //<--4ème étape
+
+            compteur_score = 0; //<--5ème étape
+
+            toucher = false; //<--6ème étape
+
+            win_lose_txt.text = ""; //<--7ème étape
+           
+
+        }
         //tant que le joueur n'est pas touché on augmente le score et on l'affiche
         if (toucher == false)  //<--1ère étape
         {
@@ -85,32 +118,7 @@ public class Score : MonoBehaviour
             activer_ennemi();
         }
 
-        //1) si on appuie sur R on restart.
-        //2) on affiche le score précédent
-        //3) ont remet a l'emplacement d'origine le joueur et les ennnemi
-        //4) on desactive les ennemi 
-        //5) on remet a 0 le compteur
-        //6) on remet toucher a False
-        //7) retirer le message de victoire ou de défaite
 
-        if (Input.GetKeyDown(KeyCode.R))  //<-- 1ère étape
-        {
-            retiens_score = compteur_score;  //<-- 2ème étape
-            score_precedent_txt.text = "Score précédent : " + retiens_score;
-            
-            player.transform.position = pos_player; //<-- 3ème étape
-            ennemi1.transform.position = pos_ennemi1;
-            ennemi2.transform.position = pos_ennemi2;
-            ennemi3.transform.position = pos_ennemi3;
-
-            desactiver_ennemi(); //<--4ème étape
-
-            compteur_score = 0; //<--5ème étape
-
-            toucher = false; //<--6ème étape
-
-            win_lose_txt.text = ""; //<--7ème étape
-        }
 
         //affiche la distance entre le joueur et chaque ennemi
         //ennemi 1
@@ -124,5 +132,9 @@ public class Score : MonoBehaviour
         distance_ennemi3.text = "Ennemi n°3 à " + dist_ennemi3 + " m";
     }
 
-    
+    IEnumerator restart()
+    {
+        yield return new WaitForSeconds( 0.1f);
+        player.transform.position = pos_player;
+    }
 }
